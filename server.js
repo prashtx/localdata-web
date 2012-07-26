@@ -1,15 +1,17 @@
 /*jslint node: true */
 'use strict';
 
-var http = require('http');
 var request = require('request');
+var connect = require('connect');
 
 var staticPrefix = process.env.STATIC_PREFIX;
 var port = process.env.PORT;
 
 var reWeb = /^\/web(.*)/;
 
-http.createServer(function (req, res) {
+var app = connect()
+.use(connect.compress())
+.use(function (req, res) {
   var result = reWeb.exec(req.url);
   var newUrl;
   if (result !== null) {
@@ -41,7 +43,8 @@ http.createServer(function (req, res) {
     res.statusCode = 404;
     res.end();
   }
-}).listen(port, function () {
+})
+.listen(port, function () {
   console.log('Listening on ' + port);
   console.log('Static prefix: ' + staticPrefix);
 });
