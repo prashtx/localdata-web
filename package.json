@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "request": "2.9.x",
-    "connect": ">=2.4.2"
+    "connect": ">=2.4.2",
+    "connect-s3": "git://github.com/prashtx/connect-s3.git"
   },
   "engines" : {
     "node": "~0.6.17"
